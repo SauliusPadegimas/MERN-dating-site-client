@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #f5cac2;
+  --color-primary-trans: rgba(245, 202, 194, 0.9);
+  --color-primary-light: #fae5df;
+  --color-primary-dark: #ed7966;
+  --color-secondary: #303179;
+  --color-secondary-dark: #141850;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //sets 1rem = 10px;
+  font-family: 'Open Sans', sans-serif;
+}
