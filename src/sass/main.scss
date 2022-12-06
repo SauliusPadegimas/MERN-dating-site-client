@@ -1,3 +1,10 @@
+// variables and basic document rules
 @import 'base';
-@import 'login';
-@import 'dating';
+// page specific style
+@import 'pages/login';
+@import 'pages/home';
+// repetable components
+@import 'components/buttons';
+@import 'components/radio-hack';
+@import 'components/server-msg';
+@import 'components/checkbox-hach';

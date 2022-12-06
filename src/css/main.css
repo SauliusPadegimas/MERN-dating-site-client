@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --color-primary: #f5cac2;
   --color-primary-trans: rgba(245, 202, 194, 0.9);
@@ -17,6 +18,218 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.center-V {
+  display: flex;
+  align-items: center;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.7;
+}
+.bg-video__content {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.login {
+  text-align: center;
+}
+.login__heading {
+  color: var(--color-primary-light);
+  font-size: 6rem;
+  margin-bottom: 4rem;
+}
+.login__sub-heading {
+  color: var(--color-secondary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.login__hero {
+  background-color: var(--color-primary-trans);
+  padding: 2rem 4rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  max-width: 39rem;
+}
+.login__tabs {
+  display: flex;
+}
+
+.login-form {
+  text-align: left;
+  padding: 3rem 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1rem;
+  position: relative;
+  color: var(--color-secondary-dark);
+  height: 43rem;
+}
+.login-form__input {
+  font-size: 1.8rem;
+  font-family: inherit;
+  padding: 0.2rem 1rem;
+  border: none;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: inherit;
+}
+.login-form__input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid var(--color-secondary);
+  margin-bottom: -3px;
+}
+.login-form__input::placeholder {
+  color: var(--color-secondary);
+}
+.login-form__label {
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: block;
+  margin-left: 1rem;
+  transition: all 0.3s;
+}
+.login-form__label--light {
+  color: var(--color-primary-light);
+}
+.login-form__input:placeholder-shown + .login-form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2.2rem);
+}
+.login-form__disclaimer {
+  font-size: 1.6rem;
+  position: absolute;
+  top: 0rem;
+  left: 2rem;
+}
+.login-form__disclaimer--light {
+  color: var(--color-primary-light);
+}
+.login-form__disclaimer--blue {
+  color: var(--color-secondary-dark);
+}
+.login-form__gender-group {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.hero {
+  max-width: 60rem;
+  margin: 4rem auto;
+}
+.hero__tab {
+  font-size: 2rem;
+  text-align: left;
+  user-select: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: var(--color-secondary-dark);
+}
+.hero__label {
+  background: linear-gradient(var(--color-primary-dark), var(--color-primary-light));
+  padding: 0.5rem 2rem;
+  width: 100%;
+  display: block;
+}
+
+.home-header {
+  width: 100%;
+  background: linear-gradient(to right, var(--color-primary-dark), var(--color-primary-light), var(--color-primary-dark));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.5rem;
+  padding: 1rem 5rem;
+  color: var(--color-secondary-dark);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.2);
+}
+.home-header__left {
+  width: 12rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .home-header {
+    padding: 1rem 2rem;
+    font-size: 2rem;
+  }
+  .home-header__left {
+    display: none;
+  }
+}
+.btn {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  transition: all 0.1s;
+  border-radius: 10rem;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+.btn--blue {
+  background-color: var(--color-secondary);
+  color: var(--color-primary-light);
+}
+.btn--light {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+.btn--transparent {
+  background-color: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+.btn--transparent:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.container {
+  display: inline-block;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+}
+
+.gender-label {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 1rem;
+  border: 4px solid transparent;
+  border-radius: 100px;
 }
 
 .radio-toggle,
@@ -26,6 +239,10 @@ html {
 
 .radio-toggle:checked ~ .radio-body {
   display: block;
+}
+
+.radio-toggle:checked ~ .gender-label {
+  border-color: var(--color-secondary);
 }
 
 .radio-label {
@@ -61,131 +278,47 @@ html {
   background-color: var(--color-secondary);
 }
 
-.login-page {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+.server-msg {
+  margin-top: 1.6rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
-
-.bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  opacity: 0.7;
-}
-.bg-video__content {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.login {
-  text-align: center;
-}
-.login__heading {
-  color: var(--color-primary-light);
-  font-size: 6rem;
-  margin-bottom: 6rem;
-}
-.login__sub-heading {
-  color: var(--color-secondary);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-.login__hero {
-  background-color: var(--color-primary-trans);
-  padding: 2rem 4rem;
-  border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-}
-.login__tabs {
-  display: flex;
-}
-
-.login-form {
-  text-align: left;
-  padding: 3rem 3rem 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 1rem;
-  position: relative;
-  color: var(--color-secondary-dark);
-  height: 38.5rem;
-}
-.login-form__input {
-  font-size: 1.8rem;
-  font-family: inherit;
-  padding: 0.2rem 1rem;
-  border: none;
-  border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: inherit;
-}
-.login-form__input:focus {
-  outline: none;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-  border-bottom: 3px solid var(--color-secondary);
-  margin-bottom: -3px;
-}
-.login-form__input::placeholder {
-  color: var(--color-secondary);
-}
-.login-form__label {
-  font-size: 1.4rem;
-  font-weight: 600;
-  display: block;
-  margin-left: 1rem;
-  transition: all 0.3s;
-}
-.login-form__label--light {
-  color: var(--color-primary-light);
-}
-.login-form__input:placeholder-shown + .login-form__label {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-2.2rem);
-}
-.login-form__disclaimer {
+  justify-content: center;
   font-size: 1.6rem;
-  position: absolute;
-  top: 0rem;
-  left: 2rem;
+  overflow-wrap: break-word;
 }
-.login-form__disclaimer--light {
-  color: var(--color-primary-light);
-}
-.login-form__disclaimer--blue {
-  color: var(--color-secondary-dark);
+.server-msg__text {
+  margin-bottom: 0;
 }
 
-.btn {
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  padding: 0.5rem 1.5rem;
-  display: inline-block;
-  transition: all 0.1s;
-  border-radius: 10rem;
-  font-size: 2rem;
-  border: none;
+.checkbox-hack__input {
+  display: none;
+}
+
+.checkbox-hack__label {
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
-.btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
+.checkbox-hack__body {
+  max-height: 0px;
+  overflow-y: hidden;
+  /*Transition time is increased to accomodate the height */
+  transition: max-height 1s cubic-bezier(0, 1, 0, 1);
 }
-.btn--blue {
-  background-color: var(--color-secondary);
-  color: var(--color-primary-light);
+
+.checkbox-hack__label::after,
+.checkbox-hack__label::before {
+  content: "﹀";
+  margin: 0 1rem;
 }
-.btn--light {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
+
+.checkbox-hack__input:checked ~ .checkbox-hack__label::after,
+.checkbox-hack__input:checked ~ .checkbox-hack__label::before {
+  content: "︿";
+}
+
+.checkbox-hack__input:checked ~ .checkbox-hack__body {
+  max-height: 900px;
+  transition: max-height 1s linear;
 }/*# sourceMappingURL=main.css.map */

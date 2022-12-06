@@ -17,4 +17,21 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; //sets 1rem = 10px;
   font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.center-V {
+  display: flex;
+  align-items: center;
 }
