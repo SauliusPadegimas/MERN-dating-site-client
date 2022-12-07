@@ -33,17 +33,15 @@
   padding: 1rem;
   display: inline-block;
   color: var(--color-primary-light);
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  border-bottom-left-radius: -2rem;
+
   text-align: center;
   flex: 1;
 
-  &--reg {
+  &--left {
     background-color: var(--color-primary-dark);
   }
 
-  &--log {
+  &--right {
     background-color: var(--color-secondary);
     margin-left: -1rem;
   }
@@ -54,11 +52,11 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 
-  &--reg {
+  &--left {
     background-color: var(--color-primary-dark);
   }
 
-  &--log {
+  &--right {
     background-color: var(--color-secondary);
   }
 }

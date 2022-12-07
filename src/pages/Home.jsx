@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../components/MainContext';
 import { useNavigate } from 'react-router-dom';
 import { IoExitOutline } from 'react-icons/io5';
@@ -9,15 +9,21 @@ import {
   BsFillEmojiHeartEyesFill,
 } from 'react-icons/bs';
 import UserProfile from '../components/UserProfile';
+import BrowseUsers from '../components/BrowseUsers';
+import Loading from '../components/Loading';
+import getSecret from '../components/getSecret';
+import Matches from '../components/Matches';
 
 function Home() {
-  const { user, setUser } = useContext(MainContext);
+  const { user, users, setUser, completeUser } = useContext(MainContext);
+  const [loading, setLoading] = useState(true);
 
   const nav = useNavigate();
 
   function logoutUser() {
     localStorage.removeItem('secret');
-    nav('/login');
+    sessionStorage.removeItem('secret');
+    window.location.reload(false);
   }
 
   async function fetchUser(secret) {
@@ -26,6 +32,7 @@ function Home() {
     if (!data.error) {
       console.log('resp from server ===', data);
       setUser(data.user);
+      setLoading(false);
     } else {
       console.log('resp from server ===', data);
       nav('/login');
@@ -33,12 +40,14 @@ function Home() {
   }
 
   useEffect(() => {
-    const secret = localStorage.getItem('secret');
+    const secret = getSecret();
     if (!secret) {
       return nav('/login');
     }
     fetchUser(secret);
   }, []);
+
+  if (loading) return <Loading />;
 
   return (
     <div className='home-page'>
@@ -53,7 +62,7 @@ function Home() {
       </header>
       <div className='hero'>
         <div className='hero__tab'>
-          <input type='checkbox' id='profile' className='checkbox-hack__input' />
+          <input type='checkbox' id='profile' className='checkbox-hack__input' defaultChecked />
           <label htmlFor='profile' className='hero__label checkbox-hack__label'>
             <div className='center-V'>
               <BsFillPersonFill style={{ marginRight: '1rem' }} /> User Profile
@@ -63,39 +72,47 @@ function Home() {
             <UserProfile />
           </div>
         </div>
-        <div className='hero__tab'>
-          <input type='checkbox' id='filter' className='checkbox-hack__input' />
-          <label htmlFor='filter' className='hero__label checkbox-hack__label'>
-            <div className='center-V'>
-              <BsFilter style={{ marginRight: '1rem' }} /> Users Filter
+        {completeUser && (
+          <>
+            <div className='hero__tab'>
+              <input type='checkbox' id='filter' className='checkbox-hack__input' />
+              <label htmlFor='filter' className='hero__label checkbox-hack__label'>
+                <div className='center-V'>
+                  <BsFilter style={{ marginRight: '1rem' }} /> Users Filter
+                </div>
+              </label>
+              <div className='checkbox-hack__body'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, unde facere odio
+                aut, explicabo dolor in libero non assumenda consectetur aspernatur animi eos soluta
+                corporis veniam, est tempore. Nostrum et accusantium facere perspiciatis inventore
+                dolore saepe, laudantium soluta non amet! Delectus in fugit earum. Doloremque
+                reprehenderit vero voluptatum modi rerum.
+              </div>
             </div>
-          </label>
-          <div className='checkbox-hack__body'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, unde facere odio aut,
-            explicabo dolor in libero non assumenda consectetur aspernatur animi eos soluta corporis
-            veniam, est tempore. Nostrum et accusantium facere perspiciatis inventore dolore saepe,
-            laudantium soluta non amet! Delectus in fugit earum. Doloremque reprehenderit vero
-            voluptatum modi rerum.
-          </div>
-        </div>
-        <div className='hero__tab'>
-          <input type='checkbox' id='likes' className='checkbox-hack__input' />
-          <label htmlFor='likes' className='hero__label checkbox-hack__label'>
-            <div className='center-V'>
-              <BsFillPeopleFill style={{ marginRight: '1rem' }} /> Browse Users
+            <div className='hero__tab'>
+              <input type='checkbox' id='likes' className='checkbox-hack__input' />
+              <label htmlFor='likes' className='hero__label checkbox-hack__label'>
+                <div className='center-V'>
+                  <BsFillPeopleFill style={{ marginRight: '1rem' }} /> Browse Users
+                </div>
+              </label>
+              <div className='checkbox-hack__body'>
+                <BrowseUsers />
+              </div>
             </div>
-          </label>
-          <div className='checkbox-hack__body'>CONTENT OF LIKE DISLIKE</div>
-        </div>
-        <div className='hero__tab'>
-          <input type='checkbox' id='history' className='checkbox-hack__input' />
-          <label htmlFor='history' className='hero__label checkbox-hack__label'>
-            <div className='center-V'>
-              <BsFillEmojiHeartEyesFill style={{ marginRight: '1rem' }} /> Matched Users
+            <div className='hero__tab'>
+              <input type='checkbox' id='history' className='checkbox-hack__input' />
+              <label htmlFor='history' className='hero__label checkbox-hack__label'>
+                <div className='center-V'>
+                  <BsFillEmojiHeartEyesFill style={{ marginRight: '1rem' }} /> Matched Users
+                </div>
+              </label>
+              <div className='checkbox-hack__body'>
+                <Matches />
+              </div>
             </div>
-          </label>
-          <div className='checkbox-hack__body'>CONTENT OF HISTORY</div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
