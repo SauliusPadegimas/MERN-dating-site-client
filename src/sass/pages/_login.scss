@@ -22,12 +22,14 @@
     color: var(--color-primary-light);
     font-size: 6rem;
     margin-bottom: 4rem;
+    user-select: none;
   }
 
   &__sub-heading {
     color: var(--color-secondary);
     font-size: 2rem;
     margin-bottom: 1rem;
+    user-select: none;
   }
   &__hero {
     background-color: var(--color-primary-trans);
@@ -38,11 +40,31 @@
   }
 
   &__tabs {
+    user-select: none;
     display: flex;
 
     & > * {
       border-top-left-radius: 2rem;
       border-top-right-radius: 2rem;
+    }
+
+    &--left {
+      background-color: var(--color-primary-dark);
+    }
+
+    &--right {
+      background-color: var(--color-secondary);
+      margin-left: -1rem;
+    }
+  }
+
+  &__body {
+    &--left {
+      background-color: var(--color-primary-dark);
+    }
+
+    &--right {
+      background-color: var(--color-secondary);
     }
   }
 }

@@ -99,7 +99,7 @@ function Login() {
             <div className='login__tabs'>
               <label
                 htmlFor='regForm'
-                className='radio-label radio-label--left'
+                className='radio-label radio-label login__tabs--left'
                 style={registerOn ? { zIndex: 1 } : { zIndex: 0 }}
                 onClick={() => setRegisterOn(true)}
               >
@@ -107,7 +107,7 @@ function Login() {
               </label>
               <label
                 htmlFor='logForm'
-                className='radio-label radio-label--right'
+                className='radio-label radio-label login__tabs--right'
                 style={registerOn ? { zIndex: 0 } : { zIndex: 1 }}
                 onClick={() => setRegisterOn(false)}
               >
@@ -122,7 +122,7 @@ function Login() {
                 className='radio-toggle'
                 defaultChecked
               />
-              <div className='radio-body radio-body--left'>
+              <div className='radio-body login__body--left'>
                 <form className='login-form' onSubmit={handleRegister}>
                   <h4 className='login-form__disclaimer login-form__disclaimer--blue'>
                     *All fields required!
@@ -222,7 +222,7 @@ function Login() {
             </div>
             <div className='radio-content'>
               <input type='radio' name='formSelector' id='logForm' className='radio-toggle' />
-              <div className='radio-body radio-body--right'>
+              <div className='radio-body login__body--right'>
                 <form className='login-form' onSubmit={handleLogin}>
                   <div className='div'>
                     <div className='login-form__group'>

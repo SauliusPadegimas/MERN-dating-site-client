@@ -60,11 +60,13 @@ html {
   color: var(--color-primary-light);
   font-size: 6rem;
   margin-bottom: 4rem;
+  user-select: none;
 }
 .login__sub-heading {
   color: var(--color-secondary);
   font-size: 2rem;
   margin-bottom: 1rem;
+  user-select: none;
 }
 .login__hero {
   background-color: var(--color-primary-trans);
@@ -74,11 +76,25 @@ html {
   max-width: 39rem;
 }
 .login__tabs {
+  user-select: none;
   display: flex;
 }
 .login__tabs > * {
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
+}
+.login__tabs--left {
+  background-color: var(--color-primary-dark);
+}
+.login__tabs--right {
+  background-color: var(--color-secondary);
+  margin-left: -1rem;
+}
+.login__body--left {
+  background-color: var(--color-primary-dark);
+}
+.login__body--right {
+  background-color: var(--color-secondary);
 }
 
 .login-form {
@@ -261,24 +277,11 @@ html {
   text-align: center;
   flex: 1;
 }
-.radio-label--left {
-  background-color: var(--color-primary-dark);
-}
-.radio-label--right {
-  background-color: var(--color-secondary);
-  margin-left: -1rem;
-}
 
 .radio-body {
   width: 100%;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-}
-.radio-body--left {
-  background-color: var(--color-primary-dark);
-}
-.radio-body--right {
-  background-color: var(--color-secondary);
 }
 
 .server-msg {
@@ -422,6 +425,26 @@ html {
   display: flex;
 }
 .matches__tabs > * {
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.matches__tabs--left {
+  background: linear-gradient(var(--color-primary-light) 80%, var(--color-primary-dark) 81%);
+  color: var(--color-primary-dark);
+}
+.matches__tabs--right {
+  background: linear-gradient(var(--color-primary-light) 80%, var(--color-secondary) 81%);
+  color: var(--color-secondary);
+  margin-left: -4rem;
+}
+.matches__body {
+  background-color: var(--color-primary-light);
+  border: 1rem solid black;
+  padding: 1rem;
+}
+.matches__body--left {
+  border-color: var(--color-primary-dark);
+}
+.matches__body--right {
+  border-color: var(--color-secondary);
 }/*# sourceMappingURL=main.css.map */

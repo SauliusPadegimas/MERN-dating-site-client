@@ -3,8 +3,32 @@
     display: flex;
 
     & > * {
-      border-top-left-radius: 2rem;
-      border-top-right-radius: 2rem;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    &--left {
+      background: linear-gradient(var(--color-primary-light) 80%, var(--color-primary-dark) 81%);
+      color: var(--color-primary-dark);
+    }
+
+    &--right {
+      background: linear-gradient(var(--color-primary-light) 80%, var(--color-secondary) 81%);
+      color: var(--color-secondary);
+      margin-left: -4rem;
+    }
+  }
+
+  &__body {
+    background-color: var(--color-primary-light);
+    border: 1rem solid black;
+    padding: 1rem;
+    &--left {
+      border-color: var(--color-primary-dark);
+    }
+
+    &--right {
+      border-color: var(--color-secondary);
     }
   }
 }
