@@ -1,11 +1,12 @@
 :root {
-  --color-primary: #f5cac2;
+  --color-primary: rgb(245, 202, 194);
   --color-primary-trans: rgba(245, 202, 194, 0.9);
-  --color-primary-light: #fae5df;
-  --color-primary-dark: #ed7966;
-  --color-secondary: #303179;
-  --color-secondary-dark: #141850;
-  --color-grey-light: #eee;
+  --color-primary-light: rgb(250, 229, 223);
+  --color-primary-light-trans: rgb(250, 229, 223, 0.6);
+  --color-primary-dark: rgb(237, 121, 102);
+  --color-secondary: rgb(48, 49, 121);
+  --color-secondary-dark: rgb(20, 24, 80);
+  --color-grey-light: rgb(238, 238, 238);
 }
 
 * {

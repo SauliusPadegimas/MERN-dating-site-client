@@ -21,14 +21,37 @@
 
   &__body {
     background-color: var(--color-primary-light);
-    border: 1rem solid black;
     padding: 1rem;
+    outline: 3px solid transparent;
+    outline-offset: -5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     &--left {
-      border-color: var(--color-primary-dark);
+      outline-color: var(--color-primary-dark);
     }
 
     &--right {
-      border-color: var(--color-secondary);
+      outline: 3px solid var(--color-secondary);
+      outline-color: var(--color-secondary);
     }
+  }
+
+  &__photo {
+    background-color: var(--color-grey-light);
+    position: relative;
+    height: 25rem;
+  }
+
+  &__info {
+    position: absolute;
+    width: 100%;
+    bottom: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-secondary);
+    padding: 1rem;
+    background-color: var(--color-primary-light-trans);
   }
 }
