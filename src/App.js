@@ -12,6 +12,8 @@ const socket = io.connect('http://localhost:4000');
 function App() {
   const [user, setUser] = useState({ username: null, photos: [] });
   const [users, setUsers] = useState([]);
+  const [newLike, setNewLike] = useState(null);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [completeUser, setCompleteUser] = useState(false);
   const [room, setRoom] = useState('');
   const states = {
@@ -20,10 +22,13 @@ function App() {
     setUser,
     users,
     setUsers,
+    filteredUsers,
+    setFilteredUsers,
     room,
     setRoom,
     completeUser,
     setCompleteUser,
+    newLike,
   };
 
   const nav = useNavigate();
@@ -44,12 +49,17 @@ function App() {
       setUser(user);
     });
 
-    socket.on('users', (data) => {
+    socket.on('users', (usersData, newLikeId) => {
       const secret = getSecret();
-      const usersArr = data.filter((x) => x.secret !== secret);
+      const usersArr = usersData.filter((x) => x.secret !== secret);
       setUsers(usersArr);
+      if (newLikeId) {
+        setNewLike(newLikeId);
+      }
     });
   }, []);
+
+  useEffect(() => {}, []);
 
   return (
     <MainContext.Provider value={states}>

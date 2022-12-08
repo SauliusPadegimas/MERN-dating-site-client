@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MainContext } from '../components/MainContext';
 import { useNavigate } from 'react-router-dom';
 import { IoExitOutline } from 'react-icons/io5';
+import { MdNewReleases } from 'react-icons/md';
 import {
   BsFillPersonFill,
   BsFilter,
@@ -13,9 +14,10 @@ import BrowseUsers from '../components/BrowseUsers';
 import Loading from '../components/Loading';
 import getSecret from '../components/getSecret';
 import Matches from '../components/Matches';
+import Filter from '../components/Filter';
 
 function Home() {
-  const { user, users, setUser, completeUser } = useContext(MainContext);
+  const { user, setUser, completeUser, socket, newLike } = useContext(MainContext);
   const [loading, setLoading] = useState(true);
 
   const nav = useNavigate();
@@ -33,6 +35,7 @@ function Home() {
       console.log('resp from server ===', data);
       setUser(data.user);
       setLoading(false);
+      socket.emit('join', secret);
     } else {
       console.log('resp from server ===', data);
       nav('/login');
@@ -82,11 +85,7 @@ function Home() {
                 </div>
               </label>
               <div className='checkbox-hack__body'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, unde facere odio
-                aut, explicabo dolor in libero non assumenda consectetur aspernatur animi eos soluta
-                corporis veniam, est tempore. Nostrum et accusantium facere perspiciatis inventore
-                dolore saepe, laudantium soluta non amet! Delectus in fugit earum. Doloremque
-                reprehenderit vero voluptatum modi rerum.
+                <Filter />
               </div>
             </div>
             <div className='hero__tab'>
@@ -105,6 +104,7 @@ function Home() {
               <label htmlFor='history' className='hero__label checkbox-hack__label'>
                 <div className='center-V'>
                   <BsFillEmojiHeartEyesFill style={{ marginRight: '1rem' }} /> Matched Users
+                  {newLike && <MdNewReleases style={{ color: 'red', marginLeft: '1rem' }} />}
                 </div>
               </label>
               <div className='checkbox-hack__body'>

@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
-import GetAge from './DateToAge';
+import DateToAge from './DateToAge';
 import { MainContext } from './MainContext';
 import PhotoSwiper from './PhotoSwiper';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
 import getSecret from './getSecret';
+import Loading from './Loading';
 
 function BrowseUsers() {
-  const { user, users, socket } = useContext(MainContext);
+  const { user, filteredUsers, socket } = useContext(MainContext);
   const [userToShow, setUserToShow] = useState({
     username: '',
     photos: [],
@@ -34,8 +35,8 @@ function BrowseUsers() {
   }
 
   useEffect(() => {
-    if (users.length > 0) {
-      const usersArr = users.filter((x) => {
+    if (filteredUsers.length > 0) {
+      const usersArr = filteredUsers.filter((x) => {
         if (user.liked.includes(x._id) || user.disliked.includes(x._id)) {
           return false;
         } else {
@@ -53,9 +54,9 @@ function BrowseUsers() {
         });
       }
     }
-  }, [user, users]);
+  }, [user, filteredUsers]);
 
-  if (users.lenght < 1) return <h1>Loading</h1>;
+  if (filteredUsers.length < 1) return <div className='profile'>No new users to show</div>;
 
   return (
     <div className='profile'>
@@ -84,9 +85,7 @@ function BrowseUsers() {
             <div className='profile__stats'>
               <h4>Name: {userToShow.username}</h4>
               <h4>City: {userToShow.city}</h4>
-              <h4>
-                Age: <GetAge dateString={userToShow.date} />
-              </h4>
+              <h4>Age: {DateToAge(userToShow.date)}</h4>
               <h4>Photos: {userToShow.photos.length}</h4>
             </div>
             <div className='like'>

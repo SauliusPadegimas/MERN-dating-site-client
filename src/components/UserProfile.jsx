@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import GetAge from './DateToAge';
+import DateToAge from './DateToAge';
 import getSecret from './getSecret';
 import { MainContext } from './MainContext';
 import PhotoSwiper from './PhotoSwiper';
@@ -23,9 +23,7 @@ function UserProfile() {
         <div className='profile__stats'>
           <h4>Name: {user.username}</h4>
           <h4>City: {user.city}</h4>
-          <h4>
-            Age: <GetAge dateString={user.date} />
-          </h4>
+          <h4>Age: {DateToAge(user.date)}</h4>
           <h4>Photos: {user.photos.length}</h4>
         </div>
         {!completeUser && (

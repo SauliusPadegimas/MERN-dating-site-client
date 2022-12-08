@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MainContext } from './MainContext';
 import { BsEnvelope } from 'react-icons/bs';
 import PhotoSwiper from './PhotoSwiper';
+import { MdNewReleases } from 'react-icons/md';
 
 function Matches() {
   const [leftTabOn, setLeftTabOn] = useState(true);
-  const { user, socket, users } = useContext(MainContext);
+  const { user, socket, users, newLike } = useContext(MainContext);
   const [likedArr, setLikedArr] = useState([]);
   const [likedByArr, setLikedByArr] = useState([]);
 
@@ -16,7 +17,7 @@ function Matches() {
     console.log('liked ===', liked);
     setLikedByArr(likedby);
     console.log('likedby ===', likedby);
-  }, [user, users]);
+  }, [user, users, newLike]);
 
   return (
     <div>
@@ -73,8 +74,20 @@ function Matches() {
             {!!likedByArr.length
               ? likedByArr.map((x) => (
                   <div key={x.secret} className='matches__photo'>
+                    {newLike === x._id && (
+                      <div className='matches__new-like'>
+                        <MdNewReleases style={{ color: 'red', fontSize: '4rem' }} />
+                      </div>
+                    )}
                     <PhotoSwiper photoArr={x.photos} />
-                    <h4 className='matches__info'>{x.username}</h4>
+                    <div className='matches__info'>
+                      <h4>{x.username}</h4>
+                      {user.liked.includes(x._id) && (
+                        <>
+                          <h4>MATCH!</h4> <BsEnvelope />
+                        </>
+                      )}
+                    </div>
                   </div>
                 ))
               : 'Nobody likes you :('}
