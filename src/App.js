@@ -6,16 +6,19 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Unauthorized from './pages/Unauthorized';
 import getSecret from './components/getSecret';
+import Chat from './pages/Chat';
+import Header from './components/Header';
 
 const socket = io.connect('http://localhost:4000');
 
 function App() {
-  const [user, setUser] = useState({ username: null, photos: [] });
+  const [user, setUser] = useState({ username: null, photos: [], likedBy: [] });
   const [users, setUsers] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [newLike, setNewLike] = useState(null);
+  const [newMsg, setNewMsg] = useState({ sendingUser: '' });
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [completeUser, setCompleteUser] = useState(false);
-  const [room, setRoom] = useState('');
   const states = {
     socket,
     user,
@@ -24,11 +27,13 @@ function App() {
     setUsers,
     filteredUsers,
     setFilteredUsers,
-    room,
-    setRoom,
     completeUser,
     setCompleteUser,
     newLike,
+    messages,
+    setMessages,
+    newMsg,
+    setNewMsg,
   };
 
   const nav = useNavigate();
@@ -38,7 +43,20 @@ function App() {
       setCompleteUser(true);
     }
     socket.emit('users');
+
+    socket.on('newLike', (newLikeId) => {
+      setNewLike(newLikeId);
+      const updatedArr = [newLikeId, ...user.likedBy];
+      setUser({ ...user, likedBy: updatedArr });
+    });
   }, [user]);
+
+  useEffect(() => {
+    socket.on('newMsg', (msgObj) => {
+      setNewMsg(msgObj);
+      setMessages([msgObj, ...messages]);
+    });
+  }, [messages]);
 
   useEffect(() => {
     socket.on('unauthorized', () => {
@@ -49,23 +67,25 @@ function App() {
       setUser(user);
     });
 
-    socket.on('users', (usersData, newLikeId) => {
+    socket.on('messages', (data) => {
+      setMessages(data);
+    });
+
+    socket.on('users', (usersData) => {
       const secret = getSecret();
       const usersArr = usersData.filter((x) => x.secret !== secret);
       setUsers(usersArr);
-      if (newLikeId) {
-        setNewLike(newLikeId);
-      }
     });
   }, []);
-
-  useEffect(() => {}, []);
 
   return (
     <MainContext.Provider value={states}>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Header />}>
+          <Route index element={<Home />} />
+          <Route path='/chat/:otheruser' element={<Chat />} />
+        </Route>
         <Route exact path='/unauthorized' element={<Unauthorized />} />
         {/* 👇️ veikia tik, jeigu kitu route'ai nesutampa */}
         <Route path='*' element={<h1>Oops. 404 - page not found</h1>} />

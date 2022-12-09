@@ -4,16 +4,27 @@ import MultiRangeSlider from 'multi-range-slider-react';
 import DateToAge from './DateToAge';
 
 function Filter() {
+  const [citiesArr, setCitiesArr] = useState([]);
   const [city, setCity] = useState('');
   const [gender, setGender] = useState('man');
   const [minAge, set_minAge] = useState(18);
   const [maxAge, set_maxAge] = useState(100);
-  const { user, socket, users, setUsers, setFilteredUsers } = useContext(MainContext);
+  const { users, setFilteredUsers } = useContext(MainContext);
 
   const handleInput = (e) => {
     set_minAge(e.minValue);
     set_maxAge(e.maxValue);
   };
+
+  useEffect(() => {
+    const arr = [];
+    users.forEach((element) => {
+      if (!arr.includes(element.city)) {
+        arr.push(element.city);
+      }
+      setCitiesArr(arr);
+    });
+  }, [users]);
 
   useEffect(() => {
     let arr = [];
@@ -26,14 +37,15 @@ function Filter() {
     setFilteredUsers(arr);
   }, [city, gender, users, minAge, maxAge]);
   return (
-    <div className='filter'>
-      <div className='filter__container'>
+    <div className='filter heart-backgroud'>
+      <div className='filter__container '>
         <select className='select' value={city} onChange={(e) => setCity(e.target.value)}>
           <option value=''>All Cities</option>
-          <option value='New York'>New York</option>
-          <option value='Los Angeles'>Los Angeles</option>
-          <option value='Vilnius'>Vilnius</option>
-          <option value='Kaunas'>Kaunas</option>
+          {citiesArr.map((x) => (
+            <option key={x} value={x}>
+              {x}
+            </option>
+          ))}
         </select>
         <div className='filter__gender'>
           <div className='container'>

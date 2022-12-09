@@ -3,20 +3,22 @@ import { MainContext } from './MainContext';
 import { BsEnvelope } from 'react-icons/bs';
 import PhotoSwiper from './PhotoSwiper';
 import { MdNewReleases } from 'react-icons/md';
+import { MdOutlineFiberNew } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 function Matches() {
   const [leftTabOn, setLeftTabOn] = useState(true);
-  const { user, socket, users, newLike } = useContext(MainContext);
+  const { user, users, newLike, newMsg } = useContext(MainContext);
   const [likedArr, setLikedArr] = useState([]);
   const [likedByArr, setLikedByArr] = useState([]);
+
+  const nav = useNavigate();
 
   useEffect(() => {
     const liked = users.filter((x) => user.liked.includes(x._id));
     const likedby = users.filter((x) => user.likedBy.includes(x._id));
     setLikedArr(liked);
-    console.log('liked ===', liked);
     setLikedByArr(likedby);
-    console.log('likedby ===', likedby);
   }, [user, users, newLike]);
 
   return (
@@ -48,7 +50,7 @@ function Matches() {
           defaultChecked
         />
         <div className='radio-body'>
-          <div className=' matches__body matches__body--left'>
+          <div className=' matches__body matches__body--left heart-backgroud'>
             {!!likedArr.length
               ? likedArr.map((x) => (
                   <div key={x.secret} className='matches__photo'>
@@ -57,7 +59,15 @@ function Matches() {
                       <h4>{x.username}</h4>
                       {user.likedBy.includes(x._id) && (
                         <>
-                          <h4>MATCH!</h4> <BsEnvelope />
+                          <h4>MATCH!</h4>
+                          <BsEnvelope
+                            style={
+                              newMsg.sendingUser === x.username
+                                ? { cursor: 'pointer', color: 'red' }
+                                : { cursor: 'pointer' }
+                            }
+                            onClick={() => nav(`/chat/${x.username}`)}
+                          />
                         </>
                       )}
                     </div>
@@ -70,13 +80,13 @@ function Matches() {
       <div className='radio-content'>
         <input type='radio' name='formSelector' id='logForm' className='radio-toggle' />
         <div className='radio-body'>
-          <div className='matches__body matches__body--right'>
+          <div className='matches__body matches__body--right heart-backgroud'>
             {!!likedByArr.length
               ? likedByArr.map((x) => (
                   <div key={x.secret} className='matches__photo'>
                     {newLike === x._id && (
                       <div className='matches__new-like'>
-                        <MdNewReleases style={{ color: 'red', fontSize: '4rem' }} />
+                        <MdOutlineFiberNew style={{ color: 'red', fontSize: '8rem' }} />
                       </div>
                     )}
                     <PhotoSwiper photoArr={x.photos} />
@@ -84,7 +94,15 @@ function Matches() {
                       <h4>{x.username}</h4>
                       {user.liked.includes(x._id) && (
                         <>
-                          <h4>MATCH!</h4> <BsEnvelope />
+                          <h4>MATCH!</h4>
+                          <BsEnvelope
+                            style={
+                              newMsg.sendingUser === x.username
+                                ? { cursor: 'pointer', color: 'red' }
+                                : { cursor: 'pointer' }
+                            }
+                            onClick={() => nav(`/chat/${x.username}`)}
+                          />
                         </>
                       )}
                     </div>

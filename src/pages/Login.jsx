@@ -212,7 +212,7 @@ function Login() {
                         onChange={(e) => setGender(e.target.value)}
                       />
                       <label className='gender-label' htmlFor='female'>
-                        Female
+                        Woman
                       </label>
                     </div>
                   </div>

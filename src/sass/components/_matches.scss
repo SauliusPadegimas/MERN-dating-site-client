@@ -20,20 +20,20 @@
   }
 
   &__body {
-    background-color: var(--color-primary-light);
     padding: 1rem;
     outline: 3px solid transparent;
     outline-offset: -5px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+
     &--left {
       outline-color: var(--color-primary-dark);
     }
 
     &--right {
-      outline: 3px solid var(--color-secondary);
       outline-color: var(--color-secondary);
+      box-shadow: inset 0 0 0 2000px var(--color-secondary-trans);
     }
   }
 
@@ -45,7 +45,7 @@
 
   &__new-like {
     position: absolute;
-    top: 1rem;
+    top: -1rem;
     right: 1rem;
   }
 
@@ -58,7 +58,7 @@
     align-items: center;
     justify-content: space-between;
     color: white;
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem;
     background: linear-gradient(transparent 5%, rgba(0, 0, 0, 0.5) 20%);
     font-size: 1.8rem;
 
@@ -76,5 +76,9 @@
 @media only screen and (max-width: 600px) {
   .matches__info {
     font-size: 1.2rem;
+  }
+
+  .matches__photo {
+    height: 15rem;
   }
 }

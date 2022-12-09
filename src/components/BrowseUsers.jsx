@@ -59,7 +59,7 @@ function BrowseUsers() {
   if (filteredUsers.length < 1) return <div className='profile'>No new users to show</div>;
 
   return (
-    <div className='profile'>
+    <div className='profile heart-backgroud'>
       {userToShow.username === '' ? (
         'No new users to show'
       ) : (

@@ -15,7 +15,7 @@ function UserProfile() {
     photoRef.current.value = '';
   }
   return (
-    <div className='profile'>
+    <div className='profile heart-backgroud'>
       <div className='profile__photos'>
         <PhotoSwiper photoArr={user.photos} />
       </div>
