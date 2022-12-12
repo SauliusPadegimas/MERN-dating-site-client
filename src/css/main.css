@@ -166,6 +166,9 @@ html {
   flex-wrap: nowrap;
   justify-content: space-between;
 }
+.login-form__stayLoged {
+  accent-color: var(--color-primary-dark);
+}
 
 .home-page {
   background-image: url("../images/pipes.webp");

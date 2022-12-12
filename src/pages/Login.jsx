@@ -258,6 +258,7 @@ function Login() {
                     <div className='login-form__group'>
                       <input
                         type='checkbox'
+                        className='login-form__stayLoged'
                         id='staylogedin'
                         checked={stayLoged}
                         onChange={() => setStayLoged(!stayLoged)}

@@ -140,4 +140,8 @@
     flex-wrap: nowrap;
     justify-content: space-between;
   }
+
+  &__stayLoged {
+    accent-color: var(--color-primary-dark);
+  }
 }
