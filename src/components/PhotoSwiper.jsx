@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import defaultPhoto from '../images/no-image-found.png';
+import { MdDelete } from 'react-icons/md';
 
-function PhotoSwiper({ photoArr }) {
+function PhotoSwiper({ photoArr, onDelete }) {
   const [index, setIndex] = useState(null);
   function swipeLeft() {
     if (index === photoArr.length - 1) {
@@ -32,6 +33,11 @@ function PhotoSwiper({ photoArr }) {
         className='profile__image'
         alt='user profile'
       />
+      {onDelete && !!photoArr.length && (
+        <div className='profile__image-delete' onClick={() => onDelete(photoArr[index])}>
+          <MdDelete />
+        </div>
+      )}
       <div className='arrow arrow--right' onClick={swipeRight}>
         &#10093;
       </div>

@@ -20,7 +20,12 @@
   }
 
   &__label {
-    background: linear-gradient(var(--color-primary-dark), var(--color-primary-light));
+    background: linear-gradient(
+      130deg,
+      var(--color-primary-dark) 20%,
+      var(--color-primary) 80.9%,
+      white 81%
+    );
     padding: 0.5rem 2rem;
     width: 100%;
     display: block;
@@ -30,10 +35,11 @@
 .home-header {
   width: 100%;
   background: linear-gradient(
-    to right,
-    var(--color-primary-dark),
-    var(--color-primary-light),
-    var(--color-primary-dark)
+    130deg,
+    var(--color-primary-dark) 35%,
+    white 35.1%,
+    white 65%,
+    var(--color-primary-dark) 65.1%
   );
   display: flex;
   justify-content: space-between;
@@ -42,6 +48,7 @@
   padding: 1rem 5rem;
   color: var(--color-secondary-dark);
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.2);
+  user-select: none;
 
   &__left {
     width: 12rem;
@@ -54,6 +61,8 @@
   }
 
   .home-header {
+    background: linear-gradient(130deg, var(--color-primary-dark) 50%, white 50.1%);
+
     padding: 1rem 2rem;
     font-size: 2rem;
 

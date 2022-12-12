@@ -14,10 +14,15 @@ function UserProfile() {
     socket.emit('addImage', secret, photoRef.current.value);
     photoRef.current.value = '';
   }
+
+  function deleteImg(photo) {
+    const secret = getSecret();
+    socket.emit('deleteImg', secret, photo);
+  }
   return (
     <div className='profile heart-backgroud'>
       <div className='profile__photos'>
-        <PhotoSwiper photoArr={user.photos} />
+        <PhotoSwiper photoArr={user.photos} onDelete={deleteImg} />
       </div>
       <div className='profile__info'>
         <div className='profile__stats'>

@@ -188,7 +188,7 @@ html {
   color: var(--color-secondary-dark);
 }
 .hero__label {
-  background: linear-gradient(var(--color-primary-dark), var(--color-primary-light));
+  background: linear-gradient(130deg, var(--color-primary-dark) 20%, var(--color-primary) 80.9%, white 81%);
   padding: 0.5rem 2rem;
   width: 100%;
   display: block;
@@ -196,7 +196,7 @@ html {
 
 .home-header {
   width: 100%;
-  background: linear-gradient(to right, var(--color-primary-dark), var(--color-primary-light), var(--color-primary-dark));
+  background: linear-gradient(130deg, var(--color-primary-dark) 35%, white 35.1%, white 65%, var(--color-primary-dark) 65.1%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -204,6 +204,7 @@ html {
   padding: 1rem 5rem;
   color: var(--color-secondary-dark);
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
 .home-header__left {
   width: 12rem;
@@ -214,6 +215,7 @@ html {
     margin: 1rem auto;
   }
   .home-header {
+    background: linear-gradient(130deg, var(--color-primary-dark) 50%, white 50.1%);
     padding: 1rem 2rem;
     font-size: 2rem;
   }
@@ -276,6 +278,7 @@ html {
   right: 1.5rem;
   font-size: 3rem;
   cursor: pointer;
+  user-select: none;
 }
 
 @media only screen and (max-width: 600px) {
@@ -435,6 +438,15 @@ html {
   margin: 1rem 0;
   color: var(--color-primary-dark);
 }
+.profile__image-delete {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  color: white;
+  font-size: 3rem;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+}
 
 @media only screen and (max-width: 600px) {
   .profile {
@@ -513,7 +525,7 @@ html {
   color: var(--color-primary-dark);
 }
 .matches__tabs--right {
-  background: linear-gradient(var(--color-primary-light) 80%, var(--color-secondary) 81%);
+  background: linear-gradient(white 80%, var(--color-secondary) 81%);
   color: var(--color-secondary);
   margin-left: -4rem;
 }
@@ -530,7 +542,7 @@ html {
 }
 .matches__body--right {
   outline-color: var(--color-secondary);
-  box-shadow: inset 0 0 0 2000px var(--color-secondary-trans);
+  box-shadow: inset 0 0 0 2000px transparent;
 }
 .matches__photo {
   background-color: var(--color-grey-light);
